@@ -1,3 +1,15 @@
-<p>
-  news works!
-</p>
+<div class='item' *ngFor="let item of news" attr.data-link='{{item.link}}'>
+  <span [innerHTML]="item.img"></span>
+  <p>
+    <strong>
+      <a href='{{item.link}}' title='{{item.title}}'>
+        {{item.title}}
+      </a>
+    </strong>
+    <br/>
+    <small><em>Posted on {{item.date}}</em></small>
+  </p>
+  <p>
+    {{item.description}}
+  </p>
+</div>

@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
 import { AppComponent } from './app.component';
 import { NewsComponent } from './news/news.component';
 
+import { appRouterModule } from "./app.routes";
+import { NewsService } from './news.service';
 
 @NgModule({
   declarations: [
@@ -12,9 +13,10 @@ import { NewsComponent } from './news/news.component';
     NewsComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    appRouterModule,
   ],
-  providers: [],
+  providers: [NewsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

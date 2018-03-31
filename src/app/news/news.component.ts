@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { News } from '../news';
+import { NewsService } from '../news.service';
 
 @Component({
   selector: 'app-news',
@@ -6,10 +9,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./news.component.css']
 })
 export class NewsComponent implements OnInit {
+  typ: string;
+  sub: any;
+  news: News[] = [];
 
-  constructor() { }
+  constructor(private route: ActivatedRoute,
+    private newsService: NewsService) { }
 
   ngOnInit() {
+    this.sub = this.route.params.subscribe(params => {
+      this.typ = params['type'];
+    });
+    this.news = this.newsService.getItems();
   }
-
+  
+  ngOnDestroy(){
+    this.sub.unsubscribe();
+  }
 }

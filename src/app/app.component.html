@@ -4,11 +4,12 @@
     {{ title }}
   </h1>
   <ul>
-	  <li> India | </li>
-	  <li> World | </li>
-	  <li> Business | </li>
-	  <li> Health | </li>
-	  <li> Sports  </li>
+    <li *ngFor="let type of types">
+      <a [routerLink] = "['/news', type.url]">
+	{{type.name}}
+      </a>
+    </li>
   </ul>
 </div>
 
+<router-outlet></router-outlet>
