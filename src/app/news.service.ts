@@ -60,7 +60,7 @@ function toNewsItem(json: any): News {
     description: json.desc,
     img: json.img,
     date: json.date,
-    link: json.link,
+    link: json.link[0],
   });
   return item;
 }
