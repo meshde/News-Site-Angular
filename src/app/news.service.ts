@@ -54,11 +54,18 @@ function mapNews(response: Response): News[] {
   return result; 
 }
 
+function getSrc(img: string): string {
+  var regex = /src=['"](.*)['"]\s/g;
+  var arr = regex.exec(img);
+  // console.log(arr[1]);
+  return arr[1];
+}
+
 function toNewsItem(json: any): News {
   let item = <News>({
     title: json.title,
     description: json.desc,
-    img: json.img,
+    img: getSrc(json.img),
     date: json.date,
     link: json.link[0],
   });
