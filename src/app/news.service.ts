@@ -1,12 +1,24 @@
+import { Http, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+
 import { News } from './news';
 
 @Injectable()
 export class NewsService {
+  baseURL = 'http://www.menews.com/news-json.php';
 
-  constructor() { }
+  constructor(private http: Http) { }
 
-  getItems(): News[] {
+  getItems(typ: string): Observable<News[]> {
+    let items$ = this.http.get(
+      `${this.baseURL}?type=${typ}`
+    ).map(mapNews);
+    return items$
+  }
+
+  getItemsStatic(): News[] {
     return [
       {
         'title': 'Karnataka election 2018: Kochi convention of South finmins to oppose Centre, may give Siddaramaiah a poll boost',
@@ -24,4 +36,31 @@ export class NewsService {
       },
     ];
   }
+}
+
+function mapNews(response: Response): News[] {
+  console.log(response);
+  let json = response.json();
+  console.log(json);
+
+  var result: News[] = [];
+  for (let feed_set of json) {
+    for (let feed of feed_set) {
+      result.push(toNewsItem(feed));
+    }
+  }
+
+  console.log(result);
+  return result; 
+}
+
+function toNewsItem(json: any): News {
+  let item = <News>({
+    title: json.title,
+    description: json.description,
+    img: json.img,
+    date: json.date,
+    link: json.link,
+  });
+  return item;
 }

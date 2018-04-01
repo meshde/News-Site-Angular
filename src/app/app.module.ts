@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { appRouterModule } from './app.routes';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { NewsComponent } from './news/news.component';
-
-import { appRouterModule } from "./app.routes";
 import { NewsService } from './news.service';
 
 @NgModule({
@@ -14,6 +14,7 @@ import { NewsService } from './news.service';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     appRouterModule,
   ],
   providers: [NewsService],
