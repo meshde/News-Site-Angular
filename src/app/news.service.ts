@@ -57,7 +57,7 @@ function mapNews(response: Response): News[] {
 function toNewsItem(json: any): News {
   let item = <News>({
     title: json.title,
-    description: json.description,
+    description: json.desc,
     img: json.img,
     date: json.date,
     link: json.link,
