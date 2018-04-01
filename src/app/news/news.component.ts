@@ -19,10 +19,10 @@ export class NewsComponent implements OnInit {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.typ = params['type'];
+      this.newsService
+        .getItems(this.typ)
+        .subscribe(item => this.news = item);
     });
-    this.newsService
-      .getItems(this.typ)
-      .subscribe(item => this.news = item);
   }
   
   ngOnDestroy(){
