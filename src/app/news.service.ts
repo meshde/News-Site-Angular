@@ -7,7 +7,7 @@ import { News } from './news';
 
 @Injectable()
 export class NewsService {
-  baseURL = 'http://www.menews.com/news-json.php';
+  baseURL = 'http://18.236.77.110/menews/news-json.php';
 
   constructor(private http: Http) { }
 
